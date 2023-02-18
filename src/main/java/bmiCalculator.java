@@ -14,25 +14,42 @@ public class bmiCalculator {
     }
 
     public static String normalRange(double height, String unitType, helper h) {
+        String unit = "kg";
         double lowerRange = (18.5*height);
-        lowerRange = (double)Math.round(lowerRange * 100) / 100;
         double upperRange = (24.99*height);
+        if (unitType.equalsIgnoreCase("i")) {
+            upperRange = h.kilogramsToPounds(upperRange);
+            lowerRange = h.kilogramsToPounds(lowerRange);
+            unit = "lbs";
+        }
+        lowerRange = (double)Math.round(lowerRange * 100) / 100;
         upperRange = (double)Math.round(upperRange * 100) / 100;
-        return lowerRange + " - " + upperRange;
+        return lowerRange + " " + unit + " - " + upperRange + " " + unit;
     }
 
     public static String overweightRange(double height, String unitType, helper h) {
+        String unit = "kg";
         double lowerRange = (25*height);
-        lowerRange = (double)Math.round(lowerRange * 100) / 100;
         double upperRange = (29.99*height);
+        if (unitType.equalsIgnoreCase("i")) {
+            upperRange = h.kilogramsToPounds(upperRange);
+            lowerRange = h.kilogramsToPounds(lowerRange);
+            unit = "lbs";
+        }
+        lowerRange = (double)Math.round(lowerRange * 100) / 100;
         upperRange = (double)Math.round(upperRange * 100) / 100;
-        return lowerRange + " - " + upperRange;
+        return lowerRange + " " + unit + " - " + upperRange + " " + unit;
     }
 
     public static String obeseRange(double height, String unitType, helper h) {
+        String unit = "kg";
         double lowerRange = (30*height);
+        if (unitType.equalsIgnoreCase("i")) {
+            lowerRange = h.kilogramsToPounds(lowerRange);
+            unit = "lbs";
+        }
         lowerRange = (double)Math.round(lowerRange * 100) / 100;
-        return lowerRange + "+";
+        return lowerRange + " " + unit + "+";
     }
 
     public static void bmiCalc(double height, double weight) {
